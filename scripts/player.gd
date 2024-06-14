@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @export var gravity = 400
 @export var max_fall_speed = 1000
