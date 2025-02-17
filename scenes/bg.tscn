@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bndeb7gws3uxd"]
+
+[ext_resource type="Texture2D" uid="uid://4qafaes6lbjq" path="res://assets/textures/bg/Gray.png" id="1_edpdl"]
+[ext_resource type="Script" path="res://scripts/bg.gd" id="1_tpr56"]
+
+[node name="BG" type="ParallaxBackground"]
+script = ExtResource("1_tpr56")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(640, 640)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+texture_repeat = 2
+texture = ExtResource("1_edpdl")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 640)
