@@ -1,0 +1,28 @@
+[gd_scene load_steps=9 format=3 uid="uid://cfmxgj2ibpt0k"]
+
+[ext_resource type="PackedScene" uid="uid://btduhe0ntm0dw" path="res://scenes/player.tscn" id="1_3f6d0"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_an2gt"]
+[ext_resource type="PackedScene" uid="uid://bndeb7gws3uxd" path="res://scenes/bg.tscn" id="2_4uyv1"]
+[ext_resource type="Texture2D" uid="uid://ki06eqylk0r3" path="res://assets/textures/bg/Yellow.png" id="3_j7gun"]
+[ext_resource type="PackedScene" uid="uid://7wi7adestdg3" path="res://scenes/deathzone.tscn" id="3_yjc8d"]
+[ext_resource type="PackedScene" uid="uid://b1p6lrf8ba0qu" path="res://scenes/exit.tscn" id="4_mtcvl"]
+[ext_resource type="PackedScene" uid="uid://dux1878rs2rtq" path="res://scenes/start.tscn" id="5_hl0au"]
+[ext_resource type="PackedScene" uid="uid://043okd7s804g" path="res://scenes/tile_map.tscn" id="6_14dxl"]
+
+[node name="level_3" type="Node2D"]
+script = ExtResource("1_an2gt")
+
+[node name="Player" parent="." instance=ExtResource("1_3f6d0")]
+
+[node name="BG" parent="." instance=ExtResource("2_4uyv1")]
+bg_texture = ExtResource("3_j7gun")
+
+[node name="Deathzone" parent="." instance=ExtResource("3_yjc8d")]
+
+[node name="Exit" parent="." instance=ExtResource("4_mtcvl")]
+position = Vector2(587, -112)
+
+[node name="Start" parent="." instance=ExtResource("5_hl0au")]
+position = Vector2(54, -4)
+
+[node name="TileMap" parent="." instance=ExtResource("6_14dxl")]

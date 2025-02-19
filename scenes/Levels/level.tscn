@@ -1,0 +1,49 @@
+[gd_scene load_steps=13 format=3 uid="uid://dp246t3jpha5p"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_up6a7"]
+[ext_resource type="PackedScene" uid="uid://btduhe0ntm0dw" path="res://scenes/player.tscn" id="2_juhyn"]
+[ext_resource type="PackedScene" uid="uid://cqfs8svhub2x4" path="res://scenes/Levels/level_2.tscn" id="2_q8lod"]
+[ext_resource type="PackedScene" uid="uid://bndeb7gws3uxd" path="res://scenes/bg.tscn" id="2_rrftk"]
+[ext_resource type="Texture2D" uid="uid://d4suhgjwsmjh" path="res://assets/textures/bg/Pink.png" id="3_e7mqe"]
+[ext_resource type="PackedScene" uid="uid://c0jlhusl8omy6" path="res://scenes/saw.tscn" id="4_1a82a"]
+[ext_resource type="PackedScene" uid="uid://ciodaib0po2dy" path="res://scenes/jump_pad.tscn" id="4_h8x2u"]
+[ext_resource type="PackedScene" uid="uid://b1p6lrf8ba0qu" path="res://scenes/exit.tscn" id="4_ltjqx"]
+[ext_resource type="PackedScene" uid="uid://byb2b3kox5k7t" path="res://scenes/spike_ball.tscn" id="6_te5dx"]
+[ext_resource type="PackedScene" uid="uid://043okd7s804g" path="res://scenes/tile_map.tscn" id="6_yq3vj"]
+[ext_resource type="PackedScene" uid="uid://7wi7adestdg3" path="res://scenes/deathzone.tscn" id="8_grm4e"]
+[ext_resource type="PackedScene" uid="uid://dux1878rs2rtq" path="res://scenes/start.tscn" id="9_x1f34"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_up6a7")
+next_level = ExtResource("2_q8lod")
+
+[node name="BG" parent="." instance=ExtResource("2_rrftk")]
+bg_texture = ExtResource("3_e7mqe")
+
+[node name="Exit" parent="." instance=ExtResource("4_ltjqx")]
+position = Vector2(645, -49)
+
+[node name="Start" parent="." instance=ExtResource("9_x1f34")]
+position = Vector2(153, 0)
+
+[node name="Player" parent="." instance=ExtResource("2_juhyn")]
+position = Vector2(121, -55)
+collision_layer = 2
+collision_mask = 5
+
+[node name="Deathzone" parent="." instance=ExtResource("8_grm4e")]
+
+[node name="objects" type="Node2D" parent="."]
+
+[node name="JumpPad" parent="objects" instance=ExtResource("4_h8x2u")]
+position = Vector2(199, -11)
+
+[node name="traps" type="Node2D" parent="."]
+
+[node name="Saw" parent="traps" instance=ExtResource("4_1a82a")]
+position = Vector2(58, -36)
+
+[node name="SpikeBall" parent="traps" instance=ExtResource("6_te5dx")]
+position = Vector2(251, -15)
+
+[node name="TileMap" parent="." instance=ExtResource("6_yq3vj")]
