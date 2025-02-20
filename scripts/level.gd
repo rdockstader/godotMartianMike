@@ -50,6 +50,7 @@ func _process(delta):
 
 
 func _on_deathzone_body_entered(body):
+	AudioPlayer.play_sfx("hurt")
 	reset_player()
 
 
@@ -66,6 +67,7 @@ func reset_player():
 func _on_exit_body_entered(body):
 	if body is Player:
 		win = true
+		AudioPlayer.play_sfx("complete")
 		print("Player entered exit, exiting")
 		exit.animate()
 		player.active = false

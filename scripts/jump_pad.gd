@@ -8,4 +8,5 @@ extends Area2D
 func _on_body_entered(body):
 	if body is Player:
 		animated_sprite.play("Jump")
+		AudioPlayer.play_sfx("jump")
 		body.velocity.y = -jump_velocity
