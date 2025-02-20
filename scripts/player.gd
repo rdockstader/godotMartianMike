@@ -19,8 +19,7 @@ func _physics_process(delta):
 			
 	var direction = 0
 	if active == true:
-		if Input.is_action_just_pressed("jump") && is_on_floor():
-			velocity.y += -jump
+		process_jump()
 		
 		direction = Input.get_axis("move_left", "move_right")	
 		
@@ -28,6 +27,11 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	process_animations()
+	
+func process_jump():
+	if Input.is_action_just_pressed("jump") && is_on_floor():
+			velocity.y += -jump
+			AudioPlayer.play_sfx("jump")
 
 func process_animations():
 	if velocity.x == 0:
