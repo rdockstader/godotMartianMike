@@ -5,10 +5,13 @@ class_name Player
 @export var max_fall_speed = 1000
 @export var move_speed = 125
 @export var jump = 200
+@export var boost = 100
+@export var boost_lost_per_usage =10
 
 @onready var animated_sprite = $AnimatedSprite2D
 
 var active = true
+var boost_amount = 0
 
 
 func _physics_process(delta):
@@ -30,7 +33,14 @@ func _physics_process(delta):
 	
 func process_jump():
 	if Input.is_action_just_pressed("jump") && is_on_floor():
-			velocity.y += -jump
+			var jump_amount = jump
+			if Input.is_action_pressed("boost") && boost_amount > 0:
+				print("boosted")
+				jump_amount += boost
+				boost_amount -= boost_lost_per_usage
+				if(boost_amount < 0):
+					boost_amount = 0
+			velocity.y += -jump_amount
 			AudioPlayer.play_sfx("jump")
 
 func process_animations():
@@ -49,3 +59,6 @@ func process_animations():
 		animated_sprite.play("fall")
 	elif(velocity.y < 0):
 		animated_sprite.play("jump")
+		
+func increase_boost(value: int):
+	boost_amount += value;

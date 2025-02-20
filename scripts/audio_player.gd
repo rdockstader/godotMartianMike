@@ -3,6 +3,7 @@ extends Node
 var hurt = preload("res://assets/audio/hurt.wav")
 var jump = preload("res://assets/audio/jump.wav")
 var level_complete = preload("res://assets/audio/modern_level_complete_sound.wav")
+var chomp = preload("res://assets/audio/cartoon-chomp-sound-effect.mp3")
 
 
 func play_sfx(sfx_name: String):
@@ -14,6 +15,8 @@ func play_sfx(sfx_name: String):
 		stream = jump
 	elif sfx_name.to_lower() == "complete":
 		stream = level_complete
+	elif sfx_name.to_lower() == "chomp":
+		stream = chomp
 	else:
 		print(sfx_name + "is an invalid sound name")
 	

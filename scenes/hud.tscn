@@ -30,3 +30,27 @@ text = "Time: 9999"
 label_settings = SubResource("LabelSettings_mkeeu")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="BurgerLabel" type="Label" parent="."]
+layout_mode = 1
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 153.0
+offset_bottom = 25.0
+text = "Burgers: 99/99"
+label_settings = SubResource("LabelSettings_mkeeu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BoostLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -152.0
+offset_bottom = 24.0
+grow_horizontal = 0
+text = "Boost: 1000"
+label_settings = SubResource("LabelSettings_mkeeu")
+horizontal_alignment = 1
+vertical_alignment = 1

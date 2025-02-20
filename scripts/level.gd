@@ -2,6 +2,8 @@ extends Node2D
 
 @export var next_level: PackedScene = null
 @export var level_time = 5
+@export var total_burgers = 5
+@export var boost_on_eat = 10
 
 @onready var start = $Start
 @onready var exit = $Exit
@@ -15,6 +17,7 @@ var timer_node = null
 var time_left
 
 var win = false
+var found_burgers = 0
 
 func _ready():
 	player.position = start.get_spawn_pos()
@@ -22,12 +25,18 @@ func _ready():
 	var traps = get_tree().get_nodes_in_group("traps")
 	for trap in traps:
 		trap.connect("touched_player", _on_trap_touched_player)
+	
+	var burgers = get_tree().get_nodes_in_group("treats")
+	for burger in burgers:
+		burger.connect("touched_player", _on_burger_touched_player)
 		
 	exit.body_entered.connect(_on_exit_body_entered)
 	death_zone.body_entered.connect(_on_deathzone_body_entered)
 	
 	time_left = level_time
 	hud.set_time_label(time_left)
+	hud.set_burger_label(found_burgers, total_burgers)
+	
 	timer_node = Timer.new()
 	timer_node.name = "LevelTimer"
 	timer_node.wait_time = 1
@@ -47,6 +56,8 @@ func _process(delta):
 		get_tree().quit()
 	elif Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
+		
+	hud.set_boost_amount(player.boost_amount)
 
 
 func _on_deathzone_body_entered(body):
@@ -57,6 +68,13 @@ func _on_deathzone_body_entered(body):
 func _on_trap_touched_player():
 	AudioPlayer.play_sfx("hurt")
 	reset_player()
+	
+func _on_burger_touched_player():
+	found_burgers += 1
+	AudioPlayer.play_sfx("chomp")
+	hud.set_burger_label(found_burgers, total_burgers)
+	player.increase_boost(boost_on_eat)
+	
 	
 func reset_player():
 	player.position = start.get_spawn_pos()
